@@ -9,7 +9,7 @@ const port = 3000
 app.use(bodyParser.json())
 app.use(cors())
 
-const url = 'mongodb://localhost:27017';
+const url = 'mongodb+srv://charan:1234@cluster0.dztrl2p.mongodb.net/';
 const client = new MongoClient(url);
 client.connect();
 console.log('Connected successfully to server');
@@ -28,6 +28,7 @@ app.post('/',async (req, res) => {
 })
 //delete
 app.delete('/',async (req, res) => {
+    console.log("hi")
     const password=req.body
     const deleteResult = await collection.deleteOne(password);
     res.send(deleteResult)
