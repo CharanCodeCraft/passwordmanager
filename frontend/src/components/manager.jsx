@@ -8,7 +8,7 @@ const manager = () => {
   const [localformarr, setlocalformarr] = useState([]);
   const passref = useRef();
   async function getpass(){
-    let req = await fetch("http://localhost:3000",)
+    let req = await fetch("https://passwordmanager-backend-mhiw.onrender.com",)
     let password = await req.json()
     if (password) {
       setlocalformarr(password);
@@ -39,7 +39,7 @@ const manager = () => {
     ) {
       setlocalformarr([...localformarr, {...form,id:uuidv4()}]);
       //localStorage.setItem("forms", JSON.stringify([...localformarr, {...form,id:uuidv4()}]));
-      await fetch("http://localhost:3000",{method: "POST",
+      await fetch("https://passwordmanager-backend-mhiw.onrender.com",{method: "POST",
         body: JSON.stringify({...form,id:uuidv4()}),
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const manager = () => {
     if(c){
     setlocalformarr(localformarr.filter(item=>item.id!==id))
     //localStorage.setItem("forms",JSON.stringify(localformarr.filter(item=>item.id!==id)))
-    await fetch("http://localhost:3000",{method: "DELETE",
+    await fetch("https://passwordmanager-backend-mhiw.onrender.com",{method: "DELETE",
       body: JSON.stringify({id:id}),
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const manager = () => {
   const handleedit=async(id)=>{
       setform(localformarr.filter(item=>item.id===id)[0])
       setlocalformarr(localformarr.filter(item=>item.id!==id))
-      await fetch("http://localhost:3000",{method: "DELETE",
+      await fetch("https://passwordmanager-backend-mhiw.onrender.com",{method: "DELETE",
         body: JSON.stringify({id:id}),
         headers: {
           "Content-Type": "application/json",
