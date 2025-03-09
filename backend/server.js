@@ -12,7 +12,7 @@ app.use(cors())
 const url = 'mongodb+srv://charan:1234@cluster0.dztrl2p.mongodb.net/';
 const client = new MongoClient(url);
 client.connect();
-console.log('Connected successfully to server');
+console.log('Connected successfully to server okay');
 const db = client.db('passop');
 const collection = db.collection('passwords');
 //get
