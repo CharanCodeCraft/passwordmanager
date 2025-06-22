@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { useRef, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 const Manager = () => {
+  const navigate = useNavigate();
   const ref = useRef();
   const [form, setform] = useState({ site: "", username: "", password: "" });
   const [localformarr, setlocalformarr] = useState([]);
@@ -54,7 +56,7 @@ const Manager = () => {
         });
         if (!res.ok) {
           toast.error("Failed to save password");
-          window.location.href = "/login";
+          navigate('/login')
         }
         setlocalformarr([...localformarr, newPass]);
         setform({ site: "", username: "", password: "" });
