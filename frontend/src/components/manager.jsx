@@ -45,14 +45,18 @@ const Manager = () => {
   const savepassword = async () => {
     if (form.site && form.username && form.password) {
       const newPass = { ...form, id: uuidv4() };
-      setlocalformarr([...localformarr, newPass]);
       try {
-        await fetch(`${import.meta.env.VITE_BACKEND_URL}/passmanager/`, {
+       const res= await fetch(`${import.meta.env.VITE_BACKEND_URL}/passmanager/`, {
           method: "POST",
           body: JSON.stringify(newPass),
           headers: { "Content-Type": "application/json" },
           credentials: "include",
         });
+        if (!res.ok) {
+          toast.error("Failed to save password");
+          window.location.href = "/login";
+        }
+        setlocalformarr([...localformarr, newPass]);
         setform({ site: "", username: "", password: "" });
         toast("Password Saved", { position: "top-right", autoClose: 2000 });
       } catch (error) {
