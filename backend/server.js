@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000
 require('./db.js')
 
 app.use(bodyParser.json())
-const allowedOrigins = ['http://localhost:3000','http://localhost:5173']; // Add more origins as needed
+const allowedOrigins = [process.env.FRONTEND_URL]; // Add more origins as needed
 app.use(
     cors({
         origin: function (origin, callback) {

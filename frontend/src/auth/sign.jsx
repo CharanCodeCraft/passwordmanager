@@ -69,8 +69,9 @@ const Signin = () => {
   return (
     <div className="authout flex justify-center items-center">
       <ToastContainer />
-      <div className="authin flex flex-col md:flex-row w-full max-w-[900px] min-h-[400px] mx-auto shadow-xl bg-white mt-12 rounded-lg overflow-hidden">
-        <div className="right w-full md:w-[60%] flex justify-center items-center p-6 bg-[#afd4ff]">
+      
+      <div className="authin flex flex-col md:flex-row w-full max-w-[900px] min-h-[400px] mx-auto shadow-xl  mt-12 rounded-lg overflow-hidden">
+        <div className="right w-full md:w-[100%] flex justify-center items-center p-6 bg-[#afd4ff]">
           <div className="w-full max-w-md">
             <h2 className="text-3xl font-bold text-center text-col1 mb-6">
               Sign In
