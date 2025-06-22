@@ -104,73 +104,74 @@ const Manager = () => {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={2000} theme="light" />
-      <div className="absolute inset-0 -z-10 h-[150vh] w-full bg-[#76f4ff29] bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-[#4DA1A9] opacity-20 blur-[100px]"></div>
-      </div>
-      <div className="in flex flex-col items-center mx-auto m-4 max-w-6xl min-h-96 p-6 ">
-        <div className="titile text-white flex flex-col items-center">
-          <div className="logo font-bold text-4xl font-mono">
-            <span className="text-[#79D7BE]">&lt;</span>
-            <span className="text-black">Pass</span>
-            <span className="text-[#79D7BE]">Op/&gt;</span>
-          </div>
-          <p className="text-[#2b2732eb] text-2xl font-mono mb-6">
-            Your password manager
-          </p>
+    <ToastContainer position="top-right" autoClose={2000} theme="light" />
+    <div className="absolute inset-0 -z-10 h-[150vh] w-full bg-[#76f4ff29] bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
+      <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-[#4DA1A9] opacity-20 blur-[100px]"></div>
+    </div>
+    <div className="in flex flex-col items-center mx-auto m-4 max-w-6xl min-h-96 p-6 ">
+      <div className="titile text-white flex flex-col items-center">
+        <div className="logo font-bold text-4xl font-mono">
+          <span className="text-[#79D7BE]">&lt;</span>
+          <span className="text-black">Pass</span>
+          <span className="text-[#79D7BE]">Op/&gt;</span>
         </div>
+        <p className="text-[#2b2732eb] text-2xl font-mono mb-6">
+          Your password manager
+        </p>
+      </div>
+      <input
+        type="text"
+        className="rounded-full text-xl border-2 w-full border-[#4DA1A9] p-3 py-2 mb-3"
+        placeholder="Enter website url"
+        name="site"
+        value={form.site}
+        onChange={handlechange}
+      />
+      <div className="pass flex flex-col md:flex-row py-5 w-full justify-around gap-6 relative">
         <input
           type="text"
-          className="rounded-full text-xl border-2 w-full border-[#4DA1A9] p-3 py-2 mb-3"
-          placeholder="Enter website url"
-          name="site"
-          value={form.site}
+          className="rounded-full text-xl border-2 border-[#4DA1A9] p-3 py-2 w-full md:w-1/2"
+          placeholder="Enter your email"
+          name="username"
+          value={form.username}
           onChange={handlechange}
         />
-        <div className="pass flex py-5 w-full justify-around gap-10 relative">
-          <input
-            type="text"
-            className="rounded-full text-xl border-2 border-[#4DA1A9] p-3 py-2 w-1/2"
-            placeholder="Enter your email"
-            name="username"
-            value={form.username}
-            onChange={handlechange}
-          />
-          <input
-            type="password"
-            className="rounded-full text-xl border-2 border-[#4DA1A9] p-3 py-2 w-1/2"
-            placeholder="Enter your password"
-            name="password"
-            value={form.password}
-            onChange={handlechange}
-            ref={passref}
-          />
-          <span className="absolute right-4 w-7 top-7 cursor-pointer" onClick={showpass}>
-            <img ref={ref} src="/icons/eye.png" alt="" className="" />
-          </span>
+        <input
+          type="password"
+          className="rounded-full text-xl border-2 border-[#4DA1A9] p-3 py-2 w-full md:w-1/2"
+          placeholder="Enter your password"
+          name="password"
+          value={form.password}
+          onChange={handlechange}
+          ref={passref}
+        />
+        <span className="absolute right-4 top-[65%] md:top-7 w-7 cursor-pointer" onClick={showpass}>
+          <img ref={ref} src="/icons/eye.png" alt="" className="" />
+        </span>
+      </div>
+      <button>
+        <div
+          className="add-btn border-2 border-black font-mono text-2xl mt-5 flex hover:bg-[#8cffe0f5] bg-[#30ffc8] h-10 items-center gap-1 w-fit p-6 justify-center rounded-full"
+          onClick={savepassword}
+        >
+          <lord-icon
+            src="https://cdn.lordicon.com/jgnvfzqg.json"
+            trigger="hover"
+          ></lord-icon>
+          <h3 className="font-bold">ADD</h3>
         </div>
-        <button>
-          <div
-            className="add-btn border-2 border-black font-mono text-2xl mt-5 flex hover:bg-[#8cffe0f5] bg-[#30ffc8] h-10 items-center gap-1 w-fit p-6 justify-center rounded-full"
-            onClick={savepassword}
-          >
-            <lord-icon
-              src="https://cdn.lordicon.com/jgnvfzqg.json"
-              trigger="hover"
-            ></lord-icon>
-            <h3 className="font-bold">ADD</h3>
-          </div>
-        </button>
-        <h1 className="mt-12 text-3xl font-mono font-bold">
-          Your Saved passwords
-        </h1>
-        {localformarr.length === 0 && (
-          <div>
-            <h1 className="text-4xl mt-14">No saved passwords to display</h1>
-          </div>
-        )}
-        {localformarr.length !== 0 && (
-          <table className="table-auto w-full mt-6 text-center text-2xl ">
+      </button>
+      <h1 className="mt-12 text-2xl md:text-3xl font-mono font-bold">
+        Your Saved passwords
+      </h1>
+      {localformarr.length === 0 && (
+        <div>
+          <h1 className="text-2xl md:text-4xl mt-14">No saved passwords to display</h1>
+        </div>
+      )}
+      {localformarr.length !== 0 && (
+        <div className="w-full overflow-x-auto mt-6">
+          <table className="table-auto min-w-[600px] w-full text-center text-xl md:text-2xl">
             <thead className="bg-[#2E5077] text-white h-14">
               <tr>
                 <th>Site</th>
@@ -221,9 +222,10 @@ const Manager = () => {
               ))}
             </tbody>
           </table>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
+  </>
   );
 };
 

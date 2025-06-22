@@ -35,7 +35,11 @@ const Signup = () => {
       });
       return;
     }
-
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(formData.email)) {
+  toast.error("Please enter a valid email address", { position: "top-center" });
+  return;
+}
     try {
       console.log("Form Data:", formData); // Debugging line
       const response = await fetch(
