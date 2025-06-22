@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const navbar = () => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const checklogin = async () => {
@@ -28,7 +29,6 @@ const navbar = () => {
   }, []);
   const handlelogout = async () => {
     try {
-      window.location.href = "/login"; // Redirect to home page before logout
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`, {
         method: "GET",
         credentials: "include",
@@ -39,7 +39,7 @@ const navbar = () => {
       const data = await response.json();
       if (data.ok) {
         setIsLoggedIn(false);
-        window.location.href = "/login"; // Redirect to login page
+        navigate("/login"); // Redirect to login page
       }
     } catch (error) {
       console.error("Error during logout:", error);
